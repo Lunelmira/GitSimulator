@@ -1,4 +1,3 @@
-
 #include "Directory.hpp"
 
 Directory::Directory() {
@@ -21,7 +20,15 @@ std::vector<File>& Directory::getFiles() {
     return files;
 }
 
+const std::vector<File>& Directory::getFiles() const {
+    return files;
+}
+
 std::vector<Directory>& Directory::getDirectories() {
+    return directories;
+}
+
+const std::vector<Directory>& Directory::getDirectories() const {
     return directories;
 }
 
@@ -34,21 +41,19 @@ void Directory::addDirectory(Directory directory) {
 }
 
 bool Directory::hasFile(std::string fileName) const {
-    for (int i = 0; i < files.size(); i++) {
+    for (size_t i = 0; i < files.size(); i++) {
         if (files[i].getPath() == fileName) {
             return true;
         }
     }
-
     return false;
 }
 
 bool Directory::hasDirectory(std::string directoryName) const {
-    for (int i = 0; i < directories.size(); i++) {
+    for (size_t i = 0; i < directories.size(); i++) {
         if (directories[i].getName() == directoryName) {
             return true;
         }
     }
-
     return false;
 }
